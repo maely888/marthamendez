@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Martha Méndez Finance Advisory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a2530 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0;
+            color: white;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 1.1rem;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .language-toggle {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .language-toggle:hover {
+            background: #2980b9;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.9)), url('https://placehold.co/1200x600/2c3e50/ffffff?text=Finance+Advisory') center/cover;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 2px solid var(--secondary);
+        }
+        
+        .cta-button:hover {
+            background: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--secondary);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .service-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .service-card ul {
+            list-style-type: none;
+            margin: 1.5rem 0;
+        }
+        
+        .service-card ul li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .service-card ul li::before {
+            content: '✓';
+            color: var(--secondary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .price {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+        
+        /* Why Choose Us */
+        .why-us {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .feature i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary) 0%, #1a2530 100%);
+            color: white;
+        }
+        
+        .contact .section-title h2 {
+            color: white;
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .submit-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            background: #2980b9;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+        
+        /* Language-specific styles */
+        .lang-es {
+            display: none;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 1rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <h1>Martha Méndez <span>Finance Advisory</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#services" class="lang-en">Services</a><a href="#services" class="lang-es">Servicios</a></li>
+                    <li><a href="#why-us" class="lang-en">Why Us</a><a href="#why-us" class="lang-es">¿Por qué nosotros?</a></li>
+                    <li><a href="#contact" class="lang-en">Contact</a><a href="#contact" class="lang-es">Contacto</a></li>
+                </ul>
+            </nav>
+            <button class="language-toggle" id="languageToggle">ES</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2 class="lang-en">IFRS | Cross-Border Tax | Financial Reporting</h2>
+            <h2 class="lang-es">IFRS | Impuestos Internacionales | Reportes Financieros</h2>
+            <p class="lang-en">We support international companies in achieving IFRS compliance, optimizing cross-border tax processes, and enhancing financial efficiency with tailored solutions.</p>
+            <p class="lang-es">Ayudamos a empresas internacionales a garantizar cumplimiento IFRS, optimizar su carga fiscal cross-border y mejorar la eficiencia de sus procesos financieros con soluciones a medida.</p>
+            <a href="#contact" class="cta-button lang-en">Request Free Diagnostic</a>
+            <a href="#contact" class="cta-button lang-es">Solicitar Diagnóstico Gratuito</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="lang-en">Our B2B Services</h2>
+                <h2 class="lang-es">Nuestros Servicios B2B</h2>
+            </div>
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <h3 class="lang-en">IFRS Conversion & Reporting</h3>
+                    <h3 class="lang-es">Conversión IFRS y Reportes</h3>
+                    <ul>
+                        <li class="lang-en">Conversion of financial statements (Local GAAP → IFRS/USGAAP)</li>
+                        <li class="lang-es">Conversión de estados financieros (Local GAAP → IFRS/USGAAP)</li>
+                        <li class="lang-en">Multi-country consolidation</li>
+                        <li class="lang-es">Consolidación multi-país</li>
+                        <li class="lang-en">External audit support</li>
+                        <li class="lang-es">Apoyo en auditorías externas</li>
+                    </ul>
+                    <p class="price lang-en">From €2,500 per project</p>
+                    <p class="price lang-es">Desde €2.500 por proyecto</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <h3 class="lang-en">Cross-Border Tax & Compliance</h3>
+                    <h3 class="lang-es">Impuestos Internacionales y Cumplimiento</h3>
+                    <ul>
+                        <li class="lang-en">VAT and corporate tax returns across Europe & LATAM</li>
+                        <li class="lang-es">Declaraciones de IVA e impuestos corporativos en Europa & LATAM</li>
+                        <li class="lang-en">Process optimization through automation (VBA/Python)</li>
+                        <li class="lang-es">Optimización de procesos fiscales con automatización (VBA/Python)</li>
+                        <li class="lang-en">Risk mitigation and tax audit support</li>
+                        <li class="lang-es">Mitigación de riesgos y soporte en auditorías fiscales</li>
+                    </ul>
+                    <p class="price lang-en">Monthly retainer €800 – €1,500</p>
+                    <p class="price lang-es">Retainer mensual €800 – €1.500</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <h3 class="lang-en">Fractional Finance Controller</h3>
+                    <h3 class="lang-es">Controller Financiero Fraccional</h3>
+                    <ul>
+                        <li class="lang-en">Part-time supervision of month-end close, budgeting, and reporting</li>
+                        <li class="lang-es">Supervisión part-time de cierres, presupuestos y reporting</li>
+                        <li class="lang-en">SAP S/4HANA implementation and Power BI dashboards</li>
+                        <li class="lang-es">Implementación de SAP S/4HANA y dashboards en Power BI</li>
+                        <li class="lang-en">Internal controls and SOX compliance</li>
+                        <li class="lang-es">Control interno y SOX compliance</li>
+                    </ul>
+                    <p class="price lang-en">€2,000 – €4,000/month</p>
+                    <p class="price lang-es">€2.000 – €4.000/mes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-us" id="why-us">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="lang-en">Why Choose Us?</h2>
+                <h2 class="lang-es">¿Por qué elegirnos?</h2>
+            </div>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-certificate"></i>
+                    <h3 class="lang-en">IFRS - ACCA Certification</h3>
+                    <h3 class="lang-es">Certificación IFRS - ACCA</h3>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-briefcase"></i>
+                    <h3 class="lang-en">15+ Years Experience</h3>
+                    <h3 class="lang-es">+15 Años de Experiencia</h3>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-globe-europe"></i>
+                    <h3 class="lang-en">International Expertise</h3>
+                    <h3 class="lang-es">Experiencia Internacional</h3>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-robot"></i>
+                    <h3 class="lang-en">Process Automation</h3>
+                    <h3 class="lang-es">Automatización de Procesos</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="lang-en">Contact Us</h2>
+                <h2 class="lang-es">Contáctanos</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4 class="lang-en">Location</h4>
+                            <h4 class="lang-es">Ubicación</h4>
+                            <p class="lang-en">Warsaw, Poland | Europe & LATAM</p>
+                            <p class="lang-es">Varsovia, Polonia | Europa & LATAM</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>marelykr1@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4 class="lang-en">Phone</h4>
+                            <h4 class="lang-es">Teléfono</h4>
+                            <p>+48 786 884 670</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            <p>linkedin.com/in/martha-eliana-méndez-sánchez-85715a89</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-gift"></i>
+                        <div>
+                            <h4 class="lang-en">Free Diagnostic</h4>
+                            <h4 class="lang-es">Diagnóstico Gratuito</h4>
+                            <p class="lang-en">(30-min call + mini report with 3 key recommendations)</p>
+                            <p class="lang-es">(Llamada de 30 min + mini informe con 3 recomendaciones clave)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name" class="lang-en">Name</label>
+                            <label for="name" class="lang-es">Nombre</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="lang-en">Email</label>
+                            <label for="email" class="lang-es">Correo Electrónico</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company" class="lang-en">Company</label>
+                            <label for="company" class="lang-es">Empresa</label>
+                            <input type="text" id="company" name="company" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="lang-en">Message</label>
+                            <label for="message" class="lang-es">Mensaje</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn lang-en">Send Message</button>
+                        <button type="submit" class="submit-btn lang-es">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="lang-en">&copy; 2023 Martha Méndez Finance Advisory. All rights reserved.</p>
+            <p class="lang-es">&copy; 2023 Martha Méndez Finance Advisory. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language toggle functionality
+        const languageToggle = document.getElementById('languageToggle');
+        const langEnElements = document.querySelectorAll('.lang-en');
+        const langEsElements = document.querySelectorAll('.lang-es');
+        
+        let currentLanguage = 'en';
+        
+        languageToggle.addEventListener('click', () => {
+            if (currentLanguage === 'en') {
+                // Switch to Spanish
+                langEnElements.forEach(el => el.style.display = 'none');
+                langEsElements.forEach(el => el.style.display = 'block');
+                languageToggle.textContent = 'EN';
+                currentLanguage = 'es';
+            } else {
+                // Switch to English
+                langEsElements.forEach(el => el.style.display = 'none');
+                langEnElements.forEach(el => el.style.display = 'block');
+                languageToggle.textContent = 'ES';
+                currentLanguage = 'en';
+            }
+        });
+        
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert(currentLanguage === 'en' ? 
+                'Thank you for your message! We will contact you soon.' : 
+                '¡Gracias por su mensaje! Nos pondremos en contacto pronto.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
